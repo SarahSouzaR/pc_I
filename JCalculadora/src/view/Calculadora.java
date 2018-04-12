@@ -14,9 +14,6 @@ import calculos.FuncoesMat;
 
 public class Calculadora extends JFrame{
 	
-	
-	//só para salvar
-	
 	//Visor
 	JTextField txtVisor = new JTextField("0");
 	
@@ -221,11 +218,9 @@ public class Calculadora extends JFrame{
 		paine.add(btnPorcentagem);
 		btnPorcentagem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				valor1 = Double.parseDouble(txtVisor.getText());
-				sinal = "porcentagem";
-				if(sinal.equals("porcentagem")) {
-					txtVisor.setText(mat.porcentagem(valor1, valor2) + "");
-				}
+				valor2 = Double.parseDouble(txtVisor.getText());
+				valor2 = mat.porcentagem(valor1, valor2);
+				txtVisor.setText(valor2 + "");
 			}
 		});
 		
@@ -413,8 +408,7 @@ public class Calculadora extends JFrame{
 				}
 				else if(sinal.equals("multiplicacao")) {
 					txtVisor.setText(mat.multiplicacao(valor1, valor2) + "");
-				}
-				
+				}				
 			}
 		});
 			

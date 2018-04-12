@@ -2,9 +2,7 @@ package calculos;
 
 
 public class FuncoesMat{
-	
-	//só para salvar
-	
+		
 	public double adicao(double a, double b) {
 		double total = a + b;
 		return total;
@@ -37,10 +35,10 @@ public class FuncoesMat{
 	}
 	
 	public double porcentagem(double r, double s) { //vai depender se é soma, sub, div ou mult... 
-		double total = (r * s)/100;
-		return total;
+		s = (s /100) * r;
+		return s;
 	}
-	
+		
 	public double fracao(double t) {
 		double total = 1/t;
 		return total;
