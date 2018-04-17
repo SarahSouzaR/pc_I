@@ -61,7 +61,7 @@ public class Calculadora extends JFrame{
 	FuncoesMat mat = new FuncoesMat();
 	
 	String sinal = null, str = null;
-	double valor1 = 0, valor2 = 0, memoria = 0, mod = 0; //apagar o mod
+	double valor1 = 0, valor2 = 0, memoria = 0; 
 	
 	//Construtor
 	public Calculadora() {
