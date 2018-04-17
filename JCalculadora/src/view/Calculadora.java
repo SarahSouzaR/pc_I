@@ -412,6 +412,15 @@ public class Calculadora extends JFrame{
 		btnVirgula.setMargin(new Insets(1,1,1,1));
 		btnVirgula.setBounds(88, 240, 35, 25);
 		paine.add(btnVirgula);
+		btnVirgula.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(!txtVisor.getText().contains(".")) {
+					txtVisor.setText(txtVisor.getText() + ".");
+				} else {
+					txtVisor.setText(txtVisor.getText());
+				}
+			}
+		});
 		
 		btnAdicao.setFont( new Font( "Arial", Font.PLAIN, 12 ) );
 		btnAdicao.setMargin(new Insets(1,1,1,1));
