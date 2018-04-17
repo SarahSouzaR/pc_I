@@ -53,14 +53,15 @@ public class Calculadora extends JFrame{
 	
 	//Sexta Fileira de Botões
 	JButton btn0 = new JButton("0");
-	JButton btnVirgula = new JButton(".");
+	JButton btnVirgula = new JButton(",");
 	JButton btnAdicao = new JButton("+");
 	JButton btnIgual = new JButton("=");
 
 	
 	FuncoesMat mat = new FuncoesMat();
-	String sinal = null;
-	double valor1 = 0, valor2 = 0;
+	
+	String sinal = null, str = null;
+	double valor1 = 0, valor2 = 0, memoria = 0, mod = 0; //apagar o mod
 	
 	//Construtor
 	public Calculadora() {
@@ -79,32 +80,67 @@ public class Calculadora extends JFrame{
 		btnMC.setMargin(new Insets(1,1,1,1));
 		btnMC.setBounds(12, 85, 35, 25);
 		paine.add(btnMC);
+		btnMC.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				memoria = 0;
+			}
+		});
 		
 		btnMR.setFont( new Font( "Arial", Font.PLAIN, 12 ) );
 		btnMR.setMargin(new Insets(1,1,1,1));
 		btnMR.setBounds(50, 85, 35, 25);
 		paine.add(btnMR);
+		btnMR.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txtVisor.setText(memoria + "");;
+			}
+		});		
 		
 		btnMS.setFont( new Font( "Arial", Font.PLAIN, 12 ) );
 		btnMS.setMargin(new Insets(1,1,1,1));
 		btnMS.setBounds(88, 85, 35, 25);
-		paine.add(btnMS);	
+		paine.add(btnMS);
+		btnMS.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				memoria = Double.parseDouble(txtVisor.getText());
+				txtVisor.setText("0");
+			}
+		});
 		
 		btnMais.setFont( new Font( "Arial", Font.PLAIN, 12 ) );
 		btnMais.setMargin(new Insets(1,1,1,1));
 		btnMais.setBounds(126, 85, 35, 25);
 		paine.add(btnMais);		
+		btnMais.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				memoria = Double.parseDouble(txtVisor.getText()) + memoria;
+				txtVisor.setText("0");
+			}
+		});
 				
 		btnMenos.setFont( new Font( "Arial", Font.PLAIN, 12 ) );
 		btnMenos.setMargin(new Insets(1,1,1,1));
 		btnMenos.setBounds(164, 85, 35, 25);
 		paine.add(btnMenos);
+		btnMenos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				memoria = memoria - Double.parseDouble(txtVisor.getText());
+				txtVisor.setText("0");
+			}
+		});
 		
 		//Segunda Fileira
 		btnSeta.setFont( new Font( "Arial", Font.PLAIN, 12 ) );
 		btnSeta.setMargin(new Insets(1,1,1,1));
 		btnSeta.setBounds(12, 116, 35, 25);
 		paine.add(btnSeta);
+		btnSeta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				str = txtVisor.getText();
+				str = str.substring(0, str.length()-1);
+				txtVisor.setText(str);
+			}
+		});
 		
 		btnCE.setFont( new Font( "Arial", Font.PLAIN, 12 ) );
 		btnCE.setMargin(new Insets(1,1,1,1));
