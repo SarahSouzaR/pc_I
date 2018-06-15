@@ -7,17 +7,20 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 public class Arquivo {
 		
 	public void inserir(String texto) throws IOException {
 		//Gravação
-		FileWriter arq = new FileWriter("d:\\teste.txt", true);
+		FileWriter arq = new FileWriter("d:\\teste.txt");
 		PrintWriter gravarArq = new PrintWriter(arq);
 		
-		/*for (int i = 0; i <= 100; i++) {
+		/*
+		for (int i = 0; i <= 100; i++) {
 			gravarArq.println("Valor de i = " + i);
-		}*/
+		}
+		*/
 		
 		gravarArq.println(texto);
 		
@@ -41,38 +44,44 @@ public class Arquivo {
 			linha = lerArq.readLine(); 	
 		}
 		
-		
 		arqLeitura.close();
 	}	
 	
-	public void alterar(String pAntiga, String pNova) throws IOException {
-		String arquivo = "Arquivo";
-		String arquivo2 = "Modificar";
-		
-		BufferedWriter escrever = new BufferedWriter(new FileWriter("Modificar"));
-		BufferedReader ler = new BufferedReader(new FileReader("Arquivo"));
-		
-		String linha;
-		while ((linha = ler.readLine()) != null) {
-			if (linha.contains(pAntiga)) {
-				linha = linha.replace(pAntiga, pNova);
-			}
-			escrever.write(linha + "\n");
-		}
-		
-		escrever.close();
-		ler.close();
-		
-		new File (arquivo).delete();
-		new File (arquivo2).renameTo(new File(arquivo));
+	ArrayList<String> linhas = new ArrayList<String>();
+	String linha = null;
+	 
+    public void doIt(String p1, String p2) throws IOException
+    {				    	
+        try
+        {
+            File arquivo = new File("d:\\teste.txt");
+            FileReader arq = new FileReader(arquivo);
+            BufferedReader lerArquivo = new BufferedReader(arq);
+            while ((linha = lerArquivo.readLine()) != null)
+            {
+                if (linha.contains(p1))
+                    linha = linha.replace(p1, p2);
+                linhas.add(linha);
+            }
+            arq.close();
+            lerArquivo.close();
+            
+            FileWriter Arq = new FileWriter(arquivo);
+            BufferedWriter Arquiv = new BufferedWriter(Arq);
+            
+            for(String texto : linhas)
+            	Arquiv.write(texto);
+            	Arquiv.close();
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
+    }
+    
+	public static void main(String[] args) throws Exception {	
+		Arquivo arq = new Arquivo();
+        //arq.inserir("Aula");
+		arq.doIt("Aula", "Aula - Java");
 	}
-	
-	
-		public static void main(String[] args) throws Exception {
-			Arquivo arq = new Arquivo();
-			//arq.inserir("Rose\n");
-			arq.leitura("Rose");
-			
-		}
-
 }
